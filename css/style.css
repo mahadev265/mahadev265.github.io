@@ -214,14 +214,21 @@ figure {
 	background-position: center center;
 	background-repeat: no-repeat;
 	position: relative;
-	height: 200px;
-	width: 200px;
+	height: 300px;
+	width: 300px;
 	margin: 0 auto;
 	margin-bottom: 30px;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	-ms-border-radius: 50%;
 	border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+	#maha-header .display-tc .profile-thumb,
+	.maha-cover .display-tc .profile-thumb {
+		height: 200px;
+		width: 200px;
+	}
 }
 #maha-header .display-tc .maha-social-icons li a,
 .maha-cover .display-tc .maha-social-icons li a {
