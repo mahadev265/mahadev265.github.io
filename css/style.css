@@ -348,7 +348,6 @@ figure {
 .info li .first-block {
 	width: 40%;
 	display: inline-block;
-	float: left;
 	color: #000;
 	font-weight: bold;
 }
@@ -369,13 +368,13 @@ figure {
 	display: -moz-inline-stack;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	display: inline;
 }
 .maha-social-icons li a {
 	display: -moz-inline-stack;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	display: inline;
 	color: #ff9000;
 	padding-left: 10px;
 	padding-right: 10px;
