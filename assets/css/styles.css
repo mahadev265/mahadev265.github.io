@@ -810,6 +810,10 @@ header {
   font-size: 2rem;
   color: var(--first-color);
   margin-right: var(--mb-0-75);
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .contact__title {
   font-size: var(--h3-font-size);
