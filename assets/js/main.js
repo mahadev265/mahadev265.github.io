@@ -102,13 +102,9 @@ function scrollActive() {
     sectionId = current.getAttribute("id");
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
+      document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.add("active-link");
     } else {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
+      document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.remove("active-link");
     }
   });
 }
@@ -136,38 +132,36 @@ window.addEventListener("scroll", scrollUp);
 
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
-const iconTheme = "uil-sun";
+const iconTheme = "fa-sun-o";
 
 // Previously selected topic (if user selected)
 const selectedTheme = localStorage.getItem("selected-theme");
 const selectedIcon = localStorage.getItem("selected-icon");
 
 // We obtain the current theme that the interface has by validating the dark-theme class
-const getCurrentTheme = () =>
-  document.body.classList.contains(darkTheme) ? "dark" : "light";
-const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "uil-moon" : "uil-sun";
+const getCurrentTheme = () => (document.body.classList.contains(darkTheme) ? "dark" : "light");
+const getCurrentIcon = () => (themeButton.classList.contains(iconTheme) ? "fa-sun-o" : "fa-moon-o");
 
 //validate if user previously chose a theme
 if (selectedTheme) {
   // if theme selected by user previously then we add/remove classes again based on localStorage
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    darkTheme
-  );
-  themeButton.classList[selectedIcon === "uil-moon" ? "add" : "remove"](
-    iconTheme
-  );
-}
-//if initially there is no local storage ie. user has not made a choice and this is first time loading
-//then we check if browser/OS is in dark mode and then add dark theme if required by default
-else if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
-) {
+  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](darkTheme);
+  if (selectedIcon === "fa-moon-o") {
+    themeButton.classList.remove("fa-sun-o");
+    themeButton.classList.add("fa-moon-o");
+  } else {
+    themeButton.classList.remove("fa-moon-o");
+    themeButton.classList.add("fa-sun-o");
+  }
+} else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  //if initially there is no local storage ie. user has not made a choice and this is first time loading
+  //then we check if browser/OS is in dark mode and then add dark theme if required by default
   console.log("found dark mode for browser/OS");
+
   // add dark theme by setting dark theme flags in localStorage
   localStorage.setItem("selected-theme", "dark");
-  localStorage.setItem("selected-icon", "uil-moon");
+  localStorage.setItem("selected-icon", "fa-sun-o");
+
   // add classes for dark theme in DOM
   document.body.classList.add(darkTheme);
   themeButton.classList.add(iconTheme);
@@ -178,6 +172,14 @@ themeButton.addEventListener("click", () => {
   // Add or remove the dark / icon theme
   document.body.classList.toggle(darkTheme);
   themeButton.classList.toggle(iconTheme);
+  if (themeButton.classList.contains("fa-moon-o")) {
+    themeButton.classList.remove("fa-moon-o");
+    themeButton.classList.add("fa-sun-o");
+  } else {
+    themeButton.classList.remove("fa-sun-o");
+    themeButton.classList.add("fa-moon-o");
+  }
+
   // We save the theme and the current icon that the user chose
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
